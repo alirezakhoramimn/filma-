@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'story',
-    'django_telegrambot',
+    
+    'multiselectfield',
+    #'django_telegrambot',
 ]
 
 MIDDLEWARE = [
@@ -124,7 +126,7 @@ STATIC_ROOT = 'staticfiles'
 
 
 
-
+'''
 
 #Django Telegram Bot settings
 
@@ -187,3 +189,4 @@ DJANGO_TELEGRAMBOT = {
     ],
 
 }
+'''
