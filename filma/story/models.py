@@ -102,7 +102,7 @@ def do():
 				series = ln.a.text
 				Series.objects.create(name=name_obj, season=ses_obj,full=f'http://dl4.golchinup.ir/new/Serial/{name}{season}{series}')
 
-
+do()
 
 
 '''
