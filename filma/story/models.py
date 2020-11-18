@@ -14,7 +14,7 @@ class Name(models.Model):
 
 
 class Season(models.Model):
-	num = models.IntegerField(blank=True, null=True)
+	num = models.CharField(max_length=5,blank=True, null=True)
 
 
 class Resolution(models.Model):
@@ -32,7 +32,6 @@ class Resolution(models.Model):
 
 
 class Film(models.Model):
-	released_date = models.DateTimeField(auto_now=False,blank=True, null=True)
 	az = models.URLField(blank=True, null=True)
 	res = models.ForeignKey(Resolution, on_delete=models.CASCADE)
 	full = models.URLField(unique=True,blank=True, null=True)
@@ -85,18 +84,27 @@ def do():
 	from bs4 import BeautifulSoup 
 	import requests as r 
 	#for x in range(8,11):
-	d = r.get(f'http://dls.megauploads.ir/DonyayeSerial/series/')
+	d = r.get(f'http://dl4.golchinup.ir/new/Serial/')
 	soup = BeautifulSoup(d.text)
 	for ln in soup.find_all('td', attrs={"class":'link'}):
 		#	print(ln.a.text[:-1])
-		Name.objects.create(name=ln.a.text)
-		s = r.get(f'http://dl4.golchinup.ir/new/Serial/{ln.a.text}')
-		souper = BeautifulSoup(s.text)
-		for ln in souper.find_all('td', attrs={'class':'link'}):
-			season = ln.a.text[:-1]
-			s = r.get(f'http://dl4.golchinup.ir/new/Serial/{ln.a.text}{season}')
+		name = ln.a.text
+		name_obj = Name.objects.create(name=name[-1])
+		d = r.get(f'http://dl4.golchinup.ir/new/Serial/{name}')
+		soup = BeautifulSoup(d.text)
+		for ln in soup.find_all('td', attrs={'class':'link'}):
+			season = ln.a.text
+			ses_obj = Season.objects.create(num=season[:-1])
 
-#do()
+			d = r.get(f'http://dl4.golchinup.ir/new/Serial/{name}{season}')
+			soup = BeautifulSoup(d.text)
+			for ln in soup.find_all('td', attrs={'class':'link'}):
+				series = ln.a.text
+				Series.objects.create(name=name_obj, season=ses_obj,full=f'http://dl4.golchinup.ir/new/Serial/{name}{season}{series}')
+
+
+
+
 '''
 def do():
 ...     from bs4 import BeautifulSoup 
@@ -109,7 +117,7 @@ def do():
 ...             Name.objects.create(name=ln.a.text)
 ...             s = r.get(f'http://dl4.golchinup.ir/new/Serial/{ln.a.text}')
 ...             souper = BeautifulSoup(s.text)
-...             for ln in souper.find_all('td', attrs={'class':'link'}):
+...         	for ln in souper.find_all('td', attrs={'class':'link'}):
 ...                     season = ln.a.text[:-1]
 ...                     s = r.get(f'http://dl4.golchinup.ir/new/Serial/{ln.a.text}{season}')
 ...                     souper = BeautifulSoup(s.text)
