@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'story',
+    #'admin_kit',
     
-    'multiselectfield',
+    #'multiselectfield',
     #'django_telegrambot',
 ]
 

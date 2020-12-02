@@ -71,7 +71,8 @@
 
 <!-- Card -->
 <div class='container'>
-	{% for name in names %}
+	{% for serie in series  %}
+	
 	<div class="card">
 
 	  <!-- Card content -->
@@ -79,11 +80,13 @@
 
 	    <!-- Title -->
 	    <h4 class="card-title">
-	    		{{ name.name }}
+	    		{{ serie.name }}
 	    </h4>
 	    <!-- Text -->
-	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-	      content.</p>
+	    <p class="card-text">
+	    	{{ serie.full }} ----- {{ serie.hashed_full }}
+
+	    </p>
 	    <!-- Button -->
 	    <a href="#" class="btn btn-secondary">Button</a>
 
