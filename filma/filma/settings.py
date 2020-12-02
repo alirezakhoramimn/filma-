@@ -25,7 +25,7 @@ SECRET_KEY = '_cxszzuy*0f@4+=gi1-^%)-yuh*e_vv#q_cnt%&k*_ph*@i7(j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['alirezakhoramimn.pythonanywhere.com']
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'story',
     #'admin_kit',
-    
+
     #'multiselectfield',
     #'django_telegrambot',
 ]

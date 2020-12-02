@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.views.generic import ListView, DetailView
 from .models import Movie, Name, Series, Resolution
 # Create your views here.=
@@ -13,7 +13,8 @@ def index(request):
 
 
 def detail(request, name):
-	qs = get_object_or_404(Movie, name=name)
+	init = name[0]
+	qs = get_object_or_404(Name, initial=init)
 	return render(request, 'movie/detail.html', {'movies':qs})
 
 

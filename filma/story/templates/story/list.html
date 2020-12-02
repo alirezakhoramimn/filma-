@@ -71,8 +71,8 @@
 
 <!-- Card -->
 <div class='container'>
-	{% for serie in series  %}
-	
+	{% for serie in series %}
+
 	<div class="card">
 
 	  <!-- Card content -->
@@ -80,7 +80,7 @@
 
 	    <!-- Title -->
 	    <h4 class="card-title">
-	    		{{ serie.name }}
+	    		{{ serie.res.season.name.inital.initial }} -- {{serie.res }} --- {{serie.res.season.name.name }}
 	    </h4>
 	    <!-- Text -->
 	    <p class="card-text">
